@@ -11,5 +11,5 @@ type Checklist @createModel(accountRelation: LIST, description: "Checklist struc
     pocAccount: String @string(maxLength: 200)
     accountableOwnerAccount: String @string(maxLength: 200)
     checklistCreatorAccount: String! @string(maxLength: 200)
-    activeStatus: String! @string(maxLength: 200)
+    activeStatus: Boolean!
 }
