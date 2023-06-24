@@ -5,7 +5,7 @@ import "bootstrap/dist/js/bootstrap.bundle";
 import "App.scss";
 import {  ThemeProvider } from '@mui/material/styles';
 import DefaultTheme from "./components/proof/theme/theme";
-import Footer from "./components/proof/theme/Footer/footer";
+import Footer from "./components/proof/Footer/footer";
 
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import { NetworkId, signInContractId, Widgets } from "./data/widgets";
@@ -194,6 +194,7 @@ function App(props) {
               {signedIn ? (
                 <>
                   
+
                 </>
               ) : (
                 <>
