@@ -21,18 +21,10 @@ const MobileNavigation = (props) => {
 
   return (
     <>
-      <TopNavigation
-        {...props}
-        onClickShowMenu={(option) => {
-          setShowMenu(option);
-          blockScroll();
-        }}
-      />
-      <MenuLeft
-        {...props}
-        showMenu={showMenu === "left"}
-        onCloseMenu={() => HandleCloseMenu()}
-      />
+       <TopNavigation
+        {...props}>
+          <h1>Test</h1>
+        </TopNavigation>
     </>
   );
 };

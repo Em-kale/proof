@@ -3,6 +3,9 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import "@near-wallet-selector/modal-ui/styles.css";
 import "bootstrap/dist/js/bootstrap.bundle";
 import "App.scss";
+import {  ThemeProvider } from '@mui/material/styles';
+import DefaultTheme from "./components/proof/theme/theme";
+import Footer from "./components/proof/theme/Footer/footer";
 
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import { NetworkId, signInContractId, Widgets } from "./data/widgets";
@@ -15,6 +18,7 @@ import FlagsPage from "./pages/FlagsPage";
 import NavigationWrapper from "./components/navigation/org/NavigationWrapper";
 import SignIn from "./pages/SignIn";
 import { Toaster } from "sonner";
+import { SignInButton } from "./components/navigation/SignInButton";
 import VerifyEmail from "./pages/VerifyEmail";
 import ViewPage from "./pages/ViewPage";
 import { setupFastAuth } from "./lib/selector/setup";
@@ -180,9 +184,7 @@ function App(props) {
   };
 
   return (
-    <StyledApp className="App">
-      <div id="page-flash-prevent" />
-
+    <ThemeProvider theme={DefaultTheme}>
       <EthersProviderContext.Provider value={ethersProviderContext}>
         <BrowserRouter basename={process.env.PUBLIC_URL}>
           <Switch>
@@ -191,13 +193,12 @@ function App(props) {
             <Route path={"/"} exact={true}>
               {signedIn ? (
                 <>
-                  <NavigationWrapper {...passProps} />
-                  <ViewPage src={Widgets.LoggedPage} {...passProps} />
+                  
                 </>
               ) : (
                 <>
                   <NavigationWrapper {...passProps} />
-                  <ViewPage src={Widgets.homePage} {...passProps} />
+                  <CreateAccount {...passProps} />
                 </>
               )
               }
@@ -207,8 +208,6 @@ function App(props) {
             <Route path={"/profile"} exact={true}
                    render={() => 
                 <>
-                  <NavigationWrapper {...passProps} />
-                  <ViewPage src={Widgets.profilePage} {...passProps} />
                 </>
               } />
 
@@ -252,10 +251,11 @@ function App(props) {
           </Switch>
 
           {/* https://sonner.emilkowal.ski */}
-          <Toaster position="bottom-center" richColors />
+        \
         </BrowserRouter>
       </EthersProviderContext.Provider>
-    </StyledApp>
+      <Footer></Footer>
+    </ThemeProvider>
   );
 }
 

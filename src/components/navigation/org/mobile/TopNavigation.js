@@ -107,40 +107,8 @@ export function TopNavigation(props) {
   }, []);
 
   return (
-    <StyledNavigation className={`${scrolled ? "border-bottom" : ""}`}>
-      {props.signedIn && (
-        <button
-          onClick={() =>
-            history.push(
-              `/${props.widgets?.profilePage}?accountId=${props.signedAccountId}`
-            )
-          }
-          className="mobile-nav-profile-btn"
-        >
-          <Widget
-            src={props.widgets.profileImage}
-            props={{
-              accountId: props.signedAccountId,
-              className: "d-inline-block",
-              style: { width: "40px", height: "40px" },
-            }}
-          />
-        </button>
-      )}
-      <Link
-        to="/"
-        className={classNames(["logo-link", { large: !props.signedIn }])}
-      >
-        <img src={props.signedIn ? LogoBlack : NearLogotype} />
-      </Link>
-      <button
-        onClick={() => props.onClickShowMenu("left")}
-        className="mobile-nav-profile-btn"
-      >
-        <div className="menu-icon">
-          <i className="ph-bold ph-list"></i>
-        </div>
-      </button>
-    </StyledNavigation>
+    <>
+     {/* PUT LOGOTYPE HERE */}
+    </>
   );
 }
