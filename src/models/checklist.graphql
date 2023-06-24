@@ -1,0 +1,38 @@
+type Checklist @createModel(accountRelation: LIST, description: "Checklist structure") {
+    checklistId: String!
+    masterChecklistId: String!
+    childIds: [ChildIds!]
+    checklistName: String!
+    organization: String
+    startDate: String
+    endDate: String
+    assignTo: [String!]
+    assignedToAccount: String
+    pocAccount: String
+    accountableOwnerAccount: String
+    checklistCreatorAccount: String!
+    activeStatus: String!
+    checklistItems: [ChecklistItem!]!
+}
+
+type ChildIds {
+    childAccount: String!
+    childChecklistId: String!
+}
+
+type ChecklistItem {
+    itemId: String!
+    itemTitle: String!
+    itemDescription: String
+    itemStart: String
+    itemDeadline: String
+    itemCompleted: Boolean!
+    itemCompletionDate: String
+    itemAttestationRequired: Boolean!
+    itemAttestationReceived: Boolean
+    itemAttestationDateReceived: String
+    itemAttestationId: String
+    itemAttestationRequested: String
+    itemDateAttestationRequested: String
+    itemAttestationRequestedFromAccount: String
+}
