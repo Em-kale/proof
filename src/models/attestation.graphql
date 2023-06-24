@@ -1,38 +1,17 @@
-type Attestation @createModel(accountRelation: LIST, description: "Checklist structure") {
-    checklistId: String!
-    masterChecklistId: String!
-    childIds: [ChildIds!]
-    checklistName: String!
-    organization: String
-    startDate: String
-    endDate: String
-    assignTo: [String!]
-    assignedToAccount: String
-    pocAccount: String
-    accountableOwnerAccount: String
-    checklistCreatorAccount: String!
-    activeStatus: String!
-    checklistItems: [ChecklistItem!]!
+type Attestation @createModel(accountRelation: LIST, description: "Attestation structure") {
+    attestationId: String! @string(maxLength: 200)
+    checklistId: String! @string(maxLength: 200)
+    masterChecklistId: String! @string(maxLength: 200)
+    attestorAccount: String! @string(maxLength: 200)
+    itemId: String! @string(maxLength: 200)
+    attestationDate: String! @string(maxLength: 200)
+    attestationStatus: String! @string(maxLength: 200)
+    attestationForAccount: String! @string(maxLength: 200)
+    attestationRemark: String @string(maxLength: 500)
 }
-
-type ChildIds {
-    childAccount: String!
-    childChecklistId: String!
-}
-
-type ChecklistItem {
-    itemId: String!
-    itemTitle: String!
-    itemDescription: String
-    itemStart: String
-    itemDeadline: String
-    itemCompleted: Boolean!
-    itemCompletionDate: String
-    itemAttestationRequired: Boolean!
-    itemAttestationReceived: Boolean
-    itemAttestationDateReceived: String
-    itemAttestationId: String
-    itemAttestationRequested: String
-    itemDateAttestationRequested: String
-    itemAttestationRequestedFromAccount: String
-}
+   
+    
+   
+   
+   
+    

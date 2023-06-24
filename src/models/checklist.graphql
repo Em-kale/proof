@@ -1,38 +1,15 @@
 type Checklist @createModel(accountRelation: LIST, description: "Checklist structure") {
-    checklistId: String!
-    masterChecklistId: String!
-    childIds: [ChildIds!]
-    checklistName: String!
-    organization: String
-    startDate: String
-    endDate: String
-    assignTo: [String!]
-    assignedToAccount: String
-    pocAccount: String
-    accountableOwnerAccount: String
-    checklistCreatorAccount: String!
-    activeStatus: String!
-    checklistItems: [ChecklistItem!]!
-}
-
-type ChildIds {
-    childAccount: String!
-    childChecklistId: String!
-}
-
-type ChecklistItem {
-    itemId: String!
-    itemTitle: String!
-    itemDescription: String
-    itemStart: String
-    itemDeadline: String
-    itemCompleted: Boolean!
-    itemCompletionDate: String
-    itemAttestationRequired: Boolean!
-    itemAttestationReceived: Boolean
-    itemAttestationDateReceived: String
-    itemAttestationId: String
-    itemAttestationRequested: String
-    itemDateAttestationRequested: String
-    itemAttestationRequestedFromAccount: String
+    child: DID! @accountReference
+    checklistId: String! @string(maxLength: 200)
+    masterChecklistId: String! @string(maxLength: 200)
+    checklistName: String! @string(maxLength: 200)
+    organization: String @string(maxLength: 200)
+    startDate: String @string(maxLength: 200)
+    endDate: String @string(maxLength: 200)
+    assignTo: [String!] @list(maxLength: 5000) @string(maxLength: 200)
+    assignedToAccount: String @string(maxLength: 200)
+    pocAccount: String @string(maxLength: 200)
+    accountableOwnerAccount: String @string(maxLength: 200)
+    checklistCreatorAccount: String! @string(maxLength: 200)
+    activeStatus: String! @string(maxLength: 200)
 }
