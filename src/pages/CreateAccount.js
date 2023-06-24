@@ -1,5 +1,6 @@
 import { ACCOUNT_ID_SUFFIX, handleCreateAccount } from "../utils/auth";
 import { NetworkId, networks } from "../data/widgets";
+import { SignInButton } from "../components/navigation/SignInButton";
 import {
   accountAddressPatternNoSubaccount,
   emailPattern,
@@ -13,12 +14,13 @@ import styled from "styled-components";
 import { toast } from "sonner";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
+import { PropaneSharp } from "@mui/icons-material";
 
 const ErrorText = styled.p`
   color: hsla(8, 100%, 33%, 1);
 `;
 
-const CreateAccount = () => {
+const CreateAccount = (props) => {
   const history = useHistory();
   const [urlParams, setUrlParams] = React.useState(null);
   const [isAccountAvailable, setIsAccountAvailable] = React.useState(null);
@@ -134,7 +136,7 @@ const CreateAccount = () => {
   }
 
   return (
-    <StyledContainer>
+    <>
       <FormContainer onSubmit={onSubmit}>
         <header>
           <h1>Create account</h1>
@@ -211,7 +213,7 @@ const CreateAccount = () => {
         </Footer>
         */}
       </FormContainer>
-    </StyledContainer>
+      </>
   );
 };
 

@@ -10,8 +10,9 @@ import DefaultTheme from "./components/proof/theme/theme";
 import Footer from "./components/proof/Footer/footer";
 import Header from "./components/proof/Header/header"; 
 import Home from "./components/proof/Home/home"; 
-import Create from "./components/proof/Create/create"; 
-
+import CreateItem from "./components/proof/Create/createitem"; 
+import CreateChecklist
+ from "./components/proof/Create/createchecklist";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import { NetworkId, signInContractId, Widgets } from "./data/widgets";
 import React, { useCallback, useEffect, useState } from "react";
@@ -190,11 +191,10 @@ function App(props) {
 
   return (
     <ThemeProvider theme={DefaultTheme}>
-      <Header></Header>
+      <Header {...passProps}></Header>
       <EthersProviderContext.Provider value={ethersProviderContext}>
         <BrowserRouter basename={process.env.PUBLIC_URL}>
           <Switch>
-
             {/* Base Route */}
             <Route path={"/"} exact={true}>
               {signedIn ? (
@@ -203,17 +203,31 @@ function App(props) {
                 <>
                   <NavigationWrapper {...passProps} />
                   <CreateAccount {...passProps} />
+                  <SignInButton {...passProps}></SignInButton>
                 </>
               )
               }
             </Route>
-            <Route path={"/create"} exact={true}>
+            <Route path={"/create-checklist"} exact={true}>
               {signedIn ? (
-                <Create />
+                <CreateChecklist />
               ) : (
                 <>
                   <NavigationWrapper {...passProps} />
                   <CreateAccount {...passProps} />
+                  <SignInButton {...passProps}></SignInButton>
+                </>
+              )
+              }
+            </Route>
+            <Route path={"/create-item"} exact={true}>
+              {signedIn ? (
+                <CreateItem />
+              ) : (
+                <>
+                  <NavigationWrapper {...passProps} />
+                  <CreateAccount {...passProps} />
+                  <SignInButton {...passProps}></SignInButton>
                 </>
               )
               }
@@ -229,6 +243,7 @@ function App(props) {
             <Route path={"/signup"}>
               <NavigationWrapper {...passProps} />
               <CreateAccount {...passProps} />
+              <SignInButton {...passProps}></SignInButton>
             </Route>
 
             {/* FastAuth & Wallet Login */}
@@ -265,7 +280,7 @@ function App(props) {
           </Switch>
 
           {/* https://sonner.emilkowal.ski */}
-        \
+        
         </BrowserRouter>
       </EthersProviderContext.Provider>
       <Footer></Footer>

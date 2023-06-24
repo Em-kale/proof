@@ -1,10 +1,11 @@
 import React from "react";
 import { GrayBorderButton } from "../common/buttons/GrayBorderButton";
+import { Button }from '@mui/material'
 
 export function SignInButton(props) {
   return (
-    <GrayBorderButton className="nav-sign-in-btn" onClick={props.onSignIn}>
+    <Button variant="contained" color="secondary" onClick={props.requestSignIn}>
       Sign In
-    </GrayBorderButton>
+    </Button>
   );
 }

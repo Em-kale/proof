@@ -12,7 +12,7 @@ const Footer = () => {
                 <Stack spacing={3} justifyContent='center' alignItems="center" direction="row">
                     <IconButton size="small"><HomeIcon fontSize="medium"/></IconButton>
                     <IconButton size="small"><TimelineIcon  fontSize="medium"/></IconButton>
-                    <Fab href="/create" size='large' variant="extended">
+                    <Fab href="/create-checklist" size='large' variant="extended">
                         <AddCircleIcon fontSize="large"></AddCircleIcon>
                     </Fab>
                     <IconButton size="small"><NotificationsIcon fontSize="medium"/> </IconButton>
