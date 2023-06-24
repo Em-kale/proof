@@ -219,15 +219,6 @@ const CreateAccount = (props) => {
 
 export default CreateAccount;
 
-const StyledContainer = styled.div`
-  width: 100%;
-  height: calc(100vh - 66px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #f2f1ea;
-  padding: 0 16px;
-`;
 
 const FormContainer = styled.form`
   max-width: 450px;
@@ -288,7 +279,7 @@ const StyledButton = styled.button`
   margin-top: 4px;
   min-height: 40px;
   cursor: pointer;
-  background-color: #6be89e;
+  background-color: #75b6ee;
   color: #000000;
   font-weight: 500;
   display: flex;

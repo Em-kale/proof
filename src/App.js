@@ -190,7 +190,7 @@ function App(props) {
   };
 
   return (
-    <ThemeProvider theme={DefaultTheme}>
+    <>
       <Header {...passProps}></Header>
       <EthersProviderContext.Provider value={ethersProviderContext}>
         <BrowserRouter basename={process.env.PUBLIC_URL}>
@@ -283,8 +283,7 @@ function App(props) {
         
         </BrowserRouter>
       </EthersProviderContext.Provider>
-      <Footer></Footer>
-    </ThemeProvider>
+      </>
   );
 }
 

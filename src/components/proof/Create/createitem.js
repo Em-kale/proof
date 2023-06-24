@@ -5,7 +5,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs, { Dayjs } from 'dayjs';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { CheckBox, UpdateDisabledSharp } from '@mui/icons-material';
+
 
 
 const CreateItem = (props) => {
@@ -64,7 +64,8 @@ const CreateItem = (props) => {
 
     return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <Stack spacing={4} justifyContent="center" alignItems="center" sx={{width: "90%", display: "block", margin: "auto"}}>
+          <Typography variant="h5" fontWeight="fontWeightBold" color="secondary" sx={{ marginTop: "20px", textAlign: "center"}}>Add Items</Typography>
+        <Stack spacing={4} justifyContent="center" alignItems="center" sx={{width: "90%", display: "block", marginLeft: "auto", marginRight: "auto", marginTop: "20px"}}>
         <Grid  container rowSpacing={2} columnSpacing={1} justifyContent='center' alignItems="center">
             {/* checklist mame, organization, start date. end date, asignees, Contact account, Accountable Account, active status*/}
         <Grid item xs={6}>
