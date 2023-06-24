@@ -4,8 +4,13 @@ import "@near-wallet-selector/modal-ui/styles.css";
 import "bootstrap/dist/js/bootstrap.bundle";
 import "App.scss";
 import {  ThemeProvider } from '@mui/material/styles';
+
+//PROOF IMPORTS
 import DefaultTheme from "./components/proof/theme/theme";
 import Footer from "./components/proof/Footer/footer";
+import Header from "./components/proof/Header/header"; 
+import Home from "./components/proof/Home/home"; 
+import Create from "./components/proof/Create/create"; 
 
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import { NetworkId, signInContractId, Widgets } from "./data/widgets";
@@ -185,6 +190,7 @@ function App(props) {
 
   return (
     <ThemeProvider theme={DefaultTheme}>
+      <Header></Header>
       <EthersProviderContext.Provider value={ethersProviderContext}>
         <BrowserRouter basename={process.env.PUBLIC_URL}>
           <Switch>
@@ -192,10 +198,7 @@ function App(props) {
             {/* Base Route */}
             <Route path={"/"} exact={true}>
               {signedIn ? (
-                <>
-                  
-
-                </>
+                <Home />
               ) : (
                 <>
                   <NavigationWrapper {...passProps} />
@@ -204,7 +207,17 @@ function App(props) {
               )
               }
             </Route>
-
+            <Route path={"/create"} exact={true}>
+              {signedIn ? (
+                <Create />
+              ) : (
+                <>
+                  <NavigationWrapper {...passProps} />
+                  <CreateAccount {...passProps} />
+                </>
+              )
+              }
+            </Route>
             {/* Profile Page */}
             <Route path={"/profile"} exact={true}
                    render={() => 
