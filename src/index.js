@@ -14,5 +14,4 @@ const root = createRoot(container);
 root.render(
 <ThemeProvider theme={DefaultTheme}>
     <App />
-    <Footer></Footer>
 </ThemeProvider>);

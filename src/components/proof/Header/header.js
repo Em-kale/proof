@@ -1,15 +1,18 @@
 import React from 'react' 
-import {Typography, Stack, Button} from "@mui/material"
+import {Typography, Stack, IconButton} from "@mui/material"
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const Header = (props) => {
     return (
-        <Stack direction="row">
+        <Stack direction="row" justifyContent="space-between">
             <Typography variant="h3" fontWeight="fontWeightBold" color="secondary">PROOF</Typography>
-            <Button variant="contained" color="secondary"
+            { props.signedIn ? 
+            <IconButton color="secondary"
               onClick={() => props.logOut()}
-            >
-              Sign Out
-            </Button>
+            > 
+              <LogoutIcon color="secondary" fontSize="large"></LogoutIcon>
+            </IconButton>: <></>
+            }
         </Stack>
     )
 }

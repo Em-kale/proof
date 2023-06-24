@@ -10,6 +10,7 @@ import DefaultTheme from "./components/proof/theme/theme";
 import Footer from "./components/proof/Footer/footer";
 import Header from "./components/proof/Header/header"; 
 import Home from "./components/proof/Home/home"; 
+import Profile from './components/proof/profile/profile'
 import CreateItem from "./components/proof/Create/createitem"; 
 import CreateChecklist
  from "./components/proof/Create/createchecklist";
@@ -220,6 +221,18 @@ function App(props) {
               )
               }
             </Route>
+            <Route path={"/profile"} exact={true}>
+              {signedIn ? (
+                <Profile />
+              ) : (
+                <>
+                  <NavigationWrapper {...passProps} />
+                  <CreateAccount {...passProps} />
+                  <SignInButton {...passProps}></SignInButton>
+                </>
+              )
+              }
+            </Route>
             <Route path={"/create-item"} exact={true}>
               {signedIn ? (
                 <CreateItem />
@@ -283,6 +296,7 @@ function App(props) {
         
         </BrowserRouter>
       </EthersProviderContext.Provider>
+      { signedIn? <Footer></Footer> : <></> }
       </>
   );
 }

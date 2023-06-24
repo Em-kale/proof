@@ -1,5 +1,5 @@
 import React from 'react'
-import {AppBar, Fab, Toolbar, Stack, IconButton} from '@mui/material/'
+import {AppBar, Fab, Divider, Toolbar, Stack, IconButton} from '@mui/material/'
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import HomeIcon from '@mui/icons-material/Home';
 import TimelineIcon from '@mui/icons-material/Timeline';
@@ -9,7 +9,8 @@ import Person2Icon from '@mui/icons-material/Person2';
 const Footer = () => {
     return (
         <AppBar sx={{bottom: 0, top: "auto"}} position="fixed" color="secondary" variant="footer">
-                <Stack spacing={3} justifyContent='center' alignItems="center" direction="row">
+                <Stack spacing={2}  divider={<Divider orientation="vertical" color="black" flexItem />} justifyContent='center' alignItems="center" direction="row">
+                    
                     <IconButton  href="/" size="small"><HomeIcon fontSize="medium"/></IconButton>
                     <IconButton href="/analytics" size="small"><TimelineIcon  fontSize="medium"/></IconButton>
                     <Fab href="/create-checklist" size='large' variant="extended">
