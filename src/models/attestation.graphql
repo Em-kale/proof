@@ -1,0 +1,17 @@
+type Attestation @createModel(accountRelation: LIST, description: "Attestation structure") {
+    attestationId: String! @string(maxLength: 200)
+    checklistId: String! @string(maxLength: 200)
+    masterChecklistId: String! @string(maxLength: 200)
+    attestorAccount: String! @string(maxLength: 200)
+    itemId: String! @string(maxLength: 200)
+    attestationDate: String! @string(maxLength: 200)
+    attestationStatus: String! @string(maxLength: 200)
+    attestationForAccount: String! @string(maxLength: 200)
+    attestationRemark: String @string(maxLength: 500)
+}
+   
+    
+   
+   
+   
+    

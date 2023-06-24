@@ -16,7 +16,11 @@ import CreateChecklist
  from "./components/proof/Create/createchecklist";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import { NetworkId, signInContractId, Widgets } from "./data/widgets";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState, useContext } from "react";
+import { appStore, onAppMount } from './state/app'
+import { ceramic } from "./utils/ceramic";
+import { lit } from "./utils/lit";
+
 
 import AuthCallbackHandler from "./pages/AuthCallbackHandler";
 import Big from "big.js";
@@ -67,12 +71,68 @@ function App(props) {
   const [walletModal, setWalletModal] = useState(null);
   const [widgetSrc, setWidgetSrc] = useState(null);
   const [flags, setFlags] = useFlags();
+  const [encryptedString, setEncryptedString] = useState()
+  const [encryptedSymmetricKey, setEncryptedSymmetricKey] = useState()
   const ethersProviderContext = useEthersProviderContext();
 
   const { initNear } = useInitNear();
   const near = useNear();
   const account = useAccount();
   const accountId = account.accountId;
+
+  const { state, dispatch, update } = useContext(appStore)
+
+  
+
+  // initialize global app settings
+  const onMount = () => {
+      dispatch(onAppMount())
+  }
+
+  useEffect(onMount, [])
+
+ useEffect(() => {
+  async function connectLit(){
+  await lit.connect()
+  }
+  connectLit().then((res) => {
+    
+  })
+ })
+
+  useEffect(() => {
+    async function encryptSeed(){
+      let result = await lit.encrypt("My seed")
+      console.log('encrypt result', result)
+      setEncryptedString(result.encryptedString)
+      setEncryptedSymmetricKey(result.encryptedSymmetricKey)
+    }
+    encryptSeed().then((res) => {
+      
+    })
+  }, [])
+
+  useEffect(() => {
+    async function decryptSeed(encryptedString, encryptedSymmetricKey){
+      let result = await lit.decrypt(encryptedString, encryptedSymmetricKey)
+      console.log('decrypt result', result)
+    }
+    
+    if(encryptedString && encryptedSymmetricKey){
+      decryptSeed(encryptedString, encryptedSymmetricKey).then((res) => {})
+    }
+  }, [encryptedString, encryptedSymmetricKey])
+
+  useEffect(() => {
+    async function fetchCeramic(){
+      if(encryptedString) {
+        const ceramicClient = await ceramic.getUserCeramic(encryptedSymmetricKey)
+        console.log('ceramic client', ceramicClient)
+      }
+    }
+    fetchCeramic().then((res) => {})
+  })
+ 
   initializeSegment();
 
   useEffect(() => {
@@ -109,6 +169,26 @@ function App(props) {
   }, [initNear]);
 
   useEffect(() => {
+    if(initNear){
+      update('app', {account, accountId: account.accountId})
+    }
+  }, [initNear])
+console.log('state here', state)
+  useEffect(() => {
+    async function executeThisQuery(){
+      let result = await ceramic.compose.executeQuery(`
+        query {
+          viewer {
+            id
+          }
+        }
+      `)
+      console.log('result', result)
+    }
+    executeThisQuery().then((res) => {})
+  }, [])
+
+  useEffect(() => {
     if (!near) {
       return;
     }
@@ -118,6 +198,8 @@ function App(props) {
       );
     });
   }, [near]);
+
+  
 
   const requestSignInWithWallet = useCallback(
     (e) => {

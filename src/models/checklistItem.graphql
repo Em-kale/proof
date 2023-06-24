@@ -1,0 +1,22 @@
+type Checklist @loadModel(id: "kjzl6hvfrbw6c8q77wphjs2v4migq9tbcbtnxw09o2sxu881wv2wuiithm9i14m") {
+    id: ID!
+}
+
+type ChecklistItem @createModel(accountRelation: LIST, description: "Checklist Item structure") {
+    checklistId: StreamID! @documentReference(model: "Checklist")
+    checklist: Checklist! @relationDocument(property: "checklistId")
+    itemTitle: String! @string(maxLength: 200)
+    itemDescription: String @string(maxLength: 200)
+    itemStart: String @string(maxLength: 200)
+    itemDeadline: String @string(maxLength: 200)
+    itemCompleted: Boolean!
+    itemCompletionDate: String @string(maxLength: 200)
+    itemAttestationRequired: Boolean!
+    itemAuthorizedAttestors: [String!] @list(maxLength: 500) @string(maxLength: 200)
+    itemAttestationReceived: Boolean
+    itemAttestationDateReceived: String @string(maxLength: 200)
+    itemAttestationId: String @string(maxLength: 200)
+    itemAttestationRequested: String @string(maxLength: 200)
+    itemDateAttestationRequested: String @string(maxLength: 200)
+    itemAttestationRequestedFromAccount: String @string(maxLength: 200)
+}

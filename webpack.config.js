@@ -24,6 +24,7 @@ module.exports = function (env) {
         filename: "[name].bundle.js",
         publicPath: "/",
       },
+      devtool: 'source-map',
       devServer: {
         historyApiFallback: {
           disableDotRule: true,
@@ -57,6 +58,8 @@ module.exports = function (env) {
           stream: require.resolve("stream-browserify"),
           http: require.resolve("stream-http"),
           https: require.resolve("https-browserify"),
+          
+
           // "browser": require.resolve("browser"),
         },
         // Fix for using `yarn link "near-social-vm"`
@@ -96,6 +99,9 @@ module.exports = function (env) {
           Buffer: [require.resolve("buffer/"), "Buffer"],
         }),
         new ManifestPlugin.WebpackManifestPlugin(),
+        new webpack.ProvidePlugin({
+            process: "process/browser"
+        }),
       ],
     },
     loadConfig(mode),
