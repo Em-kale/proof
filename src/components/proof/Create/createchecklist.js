@@ -1,9 +1,13 @@
-import React, {useState} from 'react'
+import React, { useCallback, useEffect, useState, useContext } from "react";
+import { appStore, onAppMount } from '../../../state/app'
 import { Typography, Grid, TextField, Button, Checkbox, FormControlLabel, ownerDocument} from '@mui/material'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs, { Dayjs } from 'dayjs';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { generateId } from '../../../utils/helpers'
+import { ceramic } from "../../../utils/ceramic";
+
 
 const CreateChecklist = () => {
     const [checklistObject, setCheckListObject] = useState()
@@ -15,6 +19,13 @@ const CreateChecklist = () => {
     const [asignees, setAsignees] = useState([])
     const [POC, setPOC] = useState("")
     const [owner, setOwner] = useState("")
+
+    const { state, dispatch, update } = useContext(appStore)
+
+    const {
+        proofContract,
+        accountId
+    } = state.app
 
     function updateActive(e){
         setActive(e.target.checked)
@@ -37,7 +48,10 @@ const CreateChecklist = () => {
         setOwner(e.target.value)
     }
 
-    function submit(){
+    async function submit(){
+
+        let master_checklist_id = generateId()
+        console.log('master id', master_checklist_id)
         let checklist = {
             checklistName: listName, 
             organization: organization, 
@@ -51,11 +65,24 @@ const CreateChecklist = () => {
             activeStatus: active
         }
 
+        try{
+            let thisFreeProofContract = await ceramic.useFundingAccountForProof(accountId)
+            console.log('thisfreeproof', thisFreeProofContract)
+            
+            await thisFreeProofContract.contract.createChecklist(
+              {
+                master_checklist_id: master_checklist_id,
+                creator_account_id: accountId
+              }
+            )
+          } catch (err) {
+            console.log('error saving masterchecklist to near chain', err)
+          }
+
         console.log("checklist_object", checklist)
-        window.location.href = "/create-item";
+      //  window.location.href = "/create-item";
     }
 
-  
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
         

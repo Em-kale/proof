@@ -1,7 +1,7 @@
 export const NetworkId = "mainnet" // "mainnet";
 
 export const signInContractId =
-  NetworkId === "testnet" ? "v1.social08.testnet" : "social.near";
+  NetworkId === "testnet" ? "v1.social08.testnet" : "proof.vitalpointai.near";
 
 export const networks = {
   mainnet: {

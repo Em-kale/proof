@@ -55,16 +55,7 @@ export const onAppMount = () => async ({ update, getState, dispatch}) => {
 
     const appKeyStore = new keyStores.BrowserLocalStorageKeyStore()
 
-    const connectionConfig = {
-    networkId: networkId,
-    keyStore: appKeyStore,
-    nodeUrl: nodeUrl,
-    walletUrl: walletUrl,
-    helperUrl: helperUrl,
-    explorerUrl: explorerUrl,
-    }
-
-    const near = await connect(connectionConfig);
+   
    // const registryContract = await registry.initiateRegistryContract(account)
     
     update('app', {near})

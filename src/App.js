@@ -4,6 +4,9 @@ import "@near-wallet-selector/modal-ui/styles.css";
 import "bootstrap/dist/js/bootstrap.bundle";
 import "App.scss";
 import {  ThemeProvider } from '@mui/material/styles';
+import { registry } from './utils/registry'
+import { proof } from './utils/proof'
+import { connect, keyStores } from 'near-api-js'
 
 //PROOF IMPORTS
 import DefaultTheme from "./components/proof/theme/theme";
@@ -20,7 +23,7 @@ import React, { useCallback, useEffect, useState, useContext } from "react";
 import { appStore, onAppMount } from './state/app'
 import { ceramic } from "./utils/ceramic";
 import { lit } from "./utils/lit";
-
+import { config } from "./state/config"
 
 import AuthCallbackHandler from "./pages/AuthCallbackHandler";
 import Big from "big.js";
@@ -63,6 +66,29 @@ const StyledApp = styled.div`
 
 export const refreshAllowanceObj = {};
 
+const {
+  networkId,
+  nodeUrl,
+  walletUrl,
+  helperUrl,
+  explorerUrl
+} = config
+
+const appKeyStore = new keyStores.BrowserLocalStorageKeyStore()
+
+const connectionConfig = {
+  networkId: networkId,
+  keyStore: appKeyStore,
+  nodeUrl: nodeUrl,
+  walletUrl: walletUrl,
+  helperUrl: helperUrl,
+  explorerUrl: explorerUrl,
+  }
+
+
+const nearConnection = await connect(connectionConfig);
+console.log('nearConnection', nearConnection)
+
 function App(props) {
   const [connected, setConnected] = useState(false);
   const [signedIn, setSignedIn] = useState(false);
@@ -82,14 +108,12 @@ function App(props) {
 
   const { state, dispatch, update } = useContext(appStore)
 
-  
+//   // initialize global app settings
+//   const onMount = () => {
+//     dispatch(onAppMount())
+// }
 
-  // initialize global app settings
-  const onMount = () => {
-      dispatch(onAppMount())
-  }
-
-  useEffect(onMount, [])
+// useEffect(onMount, [])
 
  useEffect(() => {
   async function connectLit(){
@@ -125,13 +149,14 @@ function App(props) {
 
   useEffect(() => {
     async function fetchCeramic(){
-      if(encryptedString) {
+      if(encryptedSymmetricKey) {
         const ceramicClient = await ceramic.getUserCeramic(encryptedSymmetricKey)
         console.log('ceramic client', ceramicClient)
+        update('app', {ceramicClient})
       }
     }
     fetchCeramic().then((res) => {})
-  })
+  }, [encryptedSymmetricKey])
  
   initializeSegment();
 
@@ -169,10 +194,29 @@ function App(props) {
   }, [initNear]);
 
   useEffect(() => {
-    if(initNear){
+    if(account){
       update('app', {account, accountId: account.accountId})
+
     }
-  }, [initNear])
+  }, [account])
+
+  useEffect(() => {
+    if(nearConnection && account){
+    async function fetchContracts() {
+      let thisAccount = await nearConnection.account(account.accountId);
+      console.log('account hereio', thisAccount)
+      const registryContract = await registry.initiateRegistryContract(thisAccount)
+      console.log('registryContract hereio', registryContract)
+      const proofContract = await proof.initProofContract(thisAccount)
+      console.log('proofcontract', proofContract)
+      update('app', {registryContract, proofContract})
+    }
+
+    fetchContracts().then((res) => {
+    })
+  }
+  }, [nearConnection, account])
+
 console.log('state here', state)
   useEffect(() => {
     async function executeThisQuery(){

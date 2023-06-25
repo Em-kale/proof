@@ -750,48 +750,51 @@ let Checklists = (_dec = NearBindgen({}), _dec2 = call({}), _dec3 = call({}), _d
     this.createdChecklist = new LookupMap("b");
   }
   assignChecklist({
-    checklist_id
+    checklist_id,
+    creator_account_id
   }) {
-    const checklist = new ChildChecklist(predecessorAccountId(), checklist_id);
-    this.assignedChecklist.set(predecessorAccountId(), checklist);
+    const checklist = new ChildChecklist(creator_account_id, checklist_id);
+    this.assignedChecklist.set(creator_account_id, checklist);
     log(`{"EVENT_JSON":{
       "standard":"nep171",
       "version":"1.0.0",
       "event":"assign_checklist",
       "data":{
-        "creatorAccount":"${predecessorAccountId()}",
+        "creatorAccount":"${creator_account_id}",
         "checklistId":"${checklist_id}",
-        "time":${blockTimestamp},
+        "time":${blockTimestamp()},
       }}}`);
     return true;
   }
   createChecklist({
-    master_checklist_id
+    master_checklist_id,
+    creator_account_id
   }) {
-    const masterChecklist = new MasterChecklist(predecessorAccountId(), master_checklist_id);
-    this.createdChecklist.set(predecessorAccountId(), masterChecklist);
+    const masterChecklist = new MasterChecklist(creator_account_id, master_checklist_id);
+    this.createdChecklist.set(creator_account_id, masterChecklist);
     log(`{"EVENT_JSON":{
       "standard":"nep171",
       "version":"1.0.0",
       "event":"create_checklist",
       "data":{
-        "creatorAccount":"${predecessorAccountId()}",
+        "creatorAccount":"${creator_account_id}",
         "masterChecklistId":"${master_checklist_id}",
-        "time":${blockTimestamp},
+        "time":${blockTimestamp()},
       }}}`);
     return true;
   }
   unassignChecklist({
-    checklist_id
+    checklist_id,
+    creator_account_id
   }) {
     log(`{"EVENT_JSON":{
       "standard":"nep171",
       "version":"1.0.0",
       "event":"unassign_checklist",
       "data":{
-        "creatorAccount":"${predecessorAccountId()}",
+        "creatorAccount":"${creator_account_id}",
         "checklistId":"${checklist_id}",
-        "time":${blockTimestamp},
+        "time":${blockTimestamp()},
       }}}`);
   }
 }, (_applyDecoratedDescriptor(_class2.prototype, "assignChecklist", [_dec2], Object.getOwnPropertyDescriptor(_class2.prototype, "assignChecklist"), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, "createChecklist", [_dec3], Object.getOwnPropertyDescriptor(_class2.prototype, "createChecklist"), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, "unassignChecklist", [_dec4], Object.getOwnPropertyDescriptor(_class2.prototype, "unassignChecklist"), _class2.prototype)), _class2)) || _class);
