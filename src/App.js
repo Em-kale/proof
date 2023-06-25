@@ -152,7 +152,7 @@ function App(props) {
       if(encryptedSymmetricKey) {
         const ceramicClient = await ceramic.getUserCeramic(encryptedSymmetricKey)
         console.log('ceramic client', ceramicClient)
-        update('app', {ceramicClient})
+        update('app', {ceramicClient: ceramicClient.ceramic, compose: ceramicClient.compose})
       }
     }
     fetchCeramic().then((res) => {})

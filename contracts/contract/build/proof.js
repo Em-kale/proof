@@ -762,7 +762,7 @@ let Checklists = (_dec = NearBindgen({}), _dec2 = call({}), _dec3 = call({}), _d
       "data":{
         "creatorAccount":"${creator_account_id}",
         "checklistId":"${checklist_id}",
-        "time":${blockTimestamp()},
+        "time":"${blockTimestamp()}",
       }}}`);
     return true;
   }
@@ -779,7 +779,7 @@ let Checklists = (_dec = NearBindgen({}), _dec2 = call({}), _dec3 = call({}), _d
       "data":{
         "creatorAccount":"${creator_account_id}",
         "masterChecklistId":"${master_checklist_id}",
-        "time":${blockTimestamp()},
+        "time":"${blockTimestamp()}",
       }}}`);
     return true;
   }
@@ -794,7 +794,7 @@ let Checklists = (_dec = NearBindgen({}), _dec2 = call({}), _dec3 = call({}), _d
       "data":{
         "creatorAccount":"${creator_account_id}",
         "checklistId":"${checklist_id}",
-        "time":${blockTimestamp()},
+        "time":"${blockTimestamp()}",
       }}}`);
   }
 }, (_applyDecoratedDescriptor(_class2.prototype, "assignChecklist", [_dec2], Object.getOwnPropertyDescriptor(_class2.prototype, "assignChecklist"), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, "createChecklist", [_dec3], Object.getOwnPropertyDescriptor(_class2.prototype, "createChecklist"), _class2.prototype), _applyDecoratedDescriptor(_class2.prototype, "unassignChecklist", [_dec4], Object.getOwnPropertyDescriptor(_class2.prototype, "unassignChecklist"), _class2.prototype)), _class2)) || _class);

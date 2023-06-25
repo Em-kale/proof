@@ -41,7 +41,7 @@ export class Checklists {
       "data":{
         "creatorAccount":"${creator_account_id}",
         "checklistId":"${checklist_id}",
-        "time":${near.blockTimestamp()},
+        "time":"${near.blockTimestamp()}",
       }}}`)
       return true
   }
@@ -57,7 +57,7 @@ export class Checklists {
       "data":{
         "creatorAccount":"${creator_account_id}",
         "masterChecklistId":"${master_checklist_id}",
-        "time":${near.blockTimestamp()},
+        "time":"${near.blockTimestamp()}",
       }}}`)
     return true
   }
@@ -71,7 +71,7 @@ export class Checklists {
       "data":{
         "creatorAccount":"${creator_account_id}",
         "checklistId":"${checklist_id}",
-        "time":${near.blockTimestamp()},
+        "time":"${near.blockTimestamp()}",
       }}}`)
   }
 }

@@ -60,7 +60,11 @@ class Client {
     });
     await did.authenticate();
     ceramic.did = did;
-    return ceramic
+    this.compose.setDID(did)
+    return {
+      ceramic: ceramic,
+      compose: this.compose
+    }
   }
 
   async useFundingAccountForRegistry(accountId) { 

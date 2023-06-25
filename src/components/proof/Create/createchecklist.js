@@ -7,6 +7,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { generateId } from '../../../utils/helpers'
 import { ceramic } from "../../../utils/ceramic";
+import { identity } from "lodash";
 
 
 const CreateChecklist = () => {
@@ -78,6 +79,24 @@ const CreateChecklist = () => {
           } catch (err) {
             console.log('error saving masterchecklist to near chain', err)
           }
+
+        //   mutation CreateMasterChecklist($i: CreateChecklistInput!){
+        //     createChecklist(input: $i){
+        //         document{
+        //             id
+        //             checklistName
+        //             organization 
+        //             startDate
+        //             endDate
+        //             assignTo
+        //             assignedToAccount
+        //             pocAccount
+        //             accountableOwnerAccount
+        //             checklistCreatorAccount
+        //             activeStatus
+        //         }
+        //     }
+         // }
 
         console.log("checklist_object", checklist)
       //  window.location.href = "/create-item";
