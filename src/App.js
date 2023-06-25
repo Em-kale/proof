@@ -25,6 +25,9 @@ import { ceramic } from "./utils/ceramic";
 import { lit } from "./utils/lit";
 import { config } from "./state/config"
 
+import Grid from "@mui/material/Grid"
+
+
 import AuthCallbackHandler from "./pages/AuthCallbackHandler";
 import Big from "big.js";
 import CreateAccount from "./pages/CreateAccount";
@@ -325,7 +328,10 @@ console.log('state here', state)
             {/* Base Route */}
             <Route path={"/"} exact={true}>
               {signedIn ? (
-                <Home />
+                <Grid container alignItems="center" justifyContent="space-between" style={{padding: '10px'}}>
+                  <Home />
+                </Grid>
+                
               ) : (
                 <>
                   <NavigationWrapper {...passProps} />
