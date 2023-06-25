@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import {Tabs, Tab, Box, Typography} from '@mui/material'
+import Checklist from '../Home/checklist'
 
 const Profile = () => {
     const [value, setValue] = useState('one');
@@ -16,7 +17,7 @@ const Profile = () => {
           <Tab value="two" label="Attestations" />
         </Tabs>
       <Box value={value} index={0}>
-        {value == "one"? <Typography>CheckLists</Typography> : <Typography>Attestations</Typography>}
+        {value == "one"? <Checklist></Checklist> : <Typography>Attestations</Typography>}
       </Box>
       </>)
 }
