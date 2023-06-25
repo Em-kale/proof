@@ -29,7 +29,7 @@ const SignIn = ({ requestSignInWithWallet }) => {
   });
 
   return (
-    <StyledContainer>
+    <>
       <FormContainer onSubmit={onSubmit}>
         <header>
           <h1>{"Sign In"}</h1>
@@ -70,7 +70,7 @@ const SignIn = ({ requestSignInWithWallet }) => {
         </Footer>
         */}
       </FormContainer>
-    </StyledContainer>
+    </>
   );
 };
 
@@ -137,7 +137,7 @@ const StyledButton = styled.button`
   margin-top: 4px;
   min-height: 40px;
   cursor: pointer;
-  background-color: #6be89e;
+  background-color: #75b6ee;
   color: #000000;
   font-weight: 500;
   display: flex;

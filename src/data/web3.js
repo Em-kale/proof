@@ -105,8 +105,8 @@ export const useEthersProviderContext = singletonHook(
         });
 
         const previouslyConnectedWallets = ls.get(web3onboardKey) || [];
-
-        if (previouslyConnectedWallets) {
+        console.log('previous wallets', previouslyConnectedWallets)
+        if (previouslyConnectedWallets && previouslyConnectedWallets.length > 0) {
           // You can also auto connect "silently" and disable all onboard modals to avoid them flashing on page load
           await onboard.connectWallet({
             autoSelect: {

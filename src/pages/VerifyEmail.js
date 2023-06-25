@@ -35,7 +35,6 @@ const VerifyEmail = () => {
     }, [window.location.search])
 
     return (
-        <StyledContainer>
             <FormContainer onSubmit={handleResendEmail}>
                 <header>
                     <a href={urlParams?.isRecovery === 'true' ? '/signin' : "/signup"} style={{ textDecoration: 'underline', color: 'black' }}><small>Go back</small></a>
@@ -49,7 +48,6 @@ const VerifyEmail = () => {
                     Resend Email
                 </StyledButton>
             </FormContainer>
-        </StyledContainer>
     )
 }
 
@@ -85,7 +83,7 @@ const StyledButton = styled.button`
   margin-top: 4px;
   min-height: 40px;
   cursor: pointer;
-  background-color: #6BE89E;
+  background-color: #75b6ee;
   color: #000000;
   font-weight: 500;
   display: flex;

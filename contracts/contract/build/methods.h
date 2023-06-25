@@ -1,0 +1,4 @@
+DEFINE_NEAR_METHOD(Checklists)
+DEFINE_NEAR_METHOD(assignChecklist)
+DEFINE_NEAR_METHOD(createChecklist)
+DEFINE_NEAR_METHOD(unassignChecklist)

@@ -1,4 +1,4 @@
-export const NetworkId = "testnet" // "mainnet";
+export const NetworkId = "mainnet" // "mainnet";
 
 export const signInContractId =
   NetworkId === "testnet" ? "v1.social08.testnet" : "social.near";
