@@ -4,6 +4,8 @@ PROOF is an application for assigning checklists to individuals, such that appro
 The user simply needs to connect with their NEAR account to begin creating and completing checklists. When a checklist is completed, they 
 can show the QR code to the attestor who can verify the task has been completed. 
 
+Originally Made for EthGlobal Waterloo Hackathon. Under development 
+
 ## Setup & Development
 
 Initialize repo:
