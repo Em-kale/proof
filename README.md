@@ -4,7 +4,7 @@ PROOF is a web 3 enabled decentralized application for assigning checklists to i
 can show the QR code to the attestor who can verify the task has been completed. 
 
 Originally Made for EthGlobal Waterloo Hackathon in one weekend as a proof of concept. 
-Demo video: https://youtu.be/MlF2T7zh7KU
+Demo video (filmed after very little sleep during the hackathon): https://youtu.be/MlF2T7zh7KU
 
 ## Setup & Development
 
